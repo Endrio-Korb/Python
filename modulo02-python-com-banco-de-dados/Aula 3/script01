@@ -1,0 +1,60 @@
+PRAGMA foreign_key = ON;
+
+CREATE TABLE IF NOT EXISTS tb_pedidos(
+	pedido_id INTEGER PRIMARY KEY AUTOINCREMENT,
+	nome_cliente TEXT NOT NULL,
+	produto TEXT NOT NULL,
+	quantidade TEXT NOT NULL
+);
+
+ALTER TABLE tb_pedidos RENAME TO tb_pedidos_pre_1fn;
+
+-- Criação da tabela de produtos
+CREATE TABLE IF NOT EXISTS tb_produto(
+	produto_id INTEGER NOT NULL,
+	produto TEXT NOT NULL,
+	PRIMARY KEY (produto_id)
+);
+
+-- Inserção na tabela de produtos
+INSERT INTO tb_produto (produto_id, produto) VALUES	
+	(1, "camisa"),
+	(2, "caneca"),
+	(3, "adesivo"),
+	(4, "cantil"),
+	(5, "cafeteira");
+	
+-- Criação da tabela de clientes
+CREATE TABLE IF NOT EXISTS tb_clientes (
+	cliente_id INTEGER NOT NULL,
+	nome_cliente TEXT NOT NULL,
+	PRIMARY KEY (cliente_id)
+);
+
+-- Inserção na tabela de clientes
+INSERT INTO tb_clientes (cliente_id, nome_cliente) VALUES
+	(1, "João Silva"),
+	(2, "Jane Smith"),
+	(3, "Sara Correa");
+
+--Criação da tabela de pedidos
+CREATE TABLE IF NOT EXISTS tb_pedidos (
+	pedido_id INTEGER NOT NULL,
+	cliente_id INTEGER NOT NULL,
+	produto_id INTEGER NOT NULL,
+	quantidade INTEGER NOT NULL,
+	PRIMARY KEY (pedido_id),
+	FOREIGN KEY (cliente_id) REFERENCES tb_clientes(cliente_id),
+	FOREIGN KEY (produto_id) REFERENCES tb_produto(produto_id)
+);
+
+-- Inserção na tabela de pedidos
+INSERT INTO tb_pedidos ( pedido_id, cliente_id, produto_id, quantidade) VALUES
+	(1,1,1,2),
+	(2,1,2,1),
+	(3,2,3,1),
+	(4,2,2,3),
+	(5,2,4,2),
+	(6,3,5,1);
+
+SELECT * FROM tb_pedidos;
