@@ -1,0 +1,64 @@
+*Código Pedido	*Código Produto	Nome Produto	Categoria	Preço	Quantidade
+1001	001	Camiseta	Vestuário	29.99	2
+1001	002	Caneca	Casa	12.99	1
+1002	002	Caneca	Casa	12.99	3
+1002	003	Adesivo	Papelaria	1.99	5
+
+PRAGMA foreign_key = ON;
+
+CREATE TABLE IF NOT EXISTS tb_venda_pre_3fn(
+	id INTEGER  NOT NULL,
+	codigo_pedido   NOT NULL,
+	codigo_produto   NOT NULL,
+	nome_produto TEXT NOT NULL,
+	categoria TEXT NOT NULL,
+	preco REAL NOT NULL,
+	quantidade INTEGER NOT NULL,
+	PRIMARY KEY (id, codigo_pedido, codigo_produto)
+);
+
+-- Criação da tabela de produtos
+CREATE TABLE IF NOT EXISTS tb_produtos (
+	produto_id INTEGER PRIMARY KEY,
+	nome_produto TEXT NOT NULL,
+	valor REAL NOT NULL
+);
+
+-- Inserção de produtos na tabela produto
+INSERT INTO tb_produtos ( produto_id, nome_produto, valor) VALUES
+	(1, "Camiseta", 29.99),
+	(2, "Caneca", 12.99),
+	(3, "Adesivo", 1.99);
+	
+-- Criação da tabela de categorias
+CREATE TABLE IF NOT EXISTS tb_categorias(
+	categoria_id INTEGER NOT NULL,
+	nome_categoria TEXT NOT NULL,
+	PRIMARY KEY (categoria_id)
+);
+
+-- Inserindo as categorias na tabela de categoria
+INSERT INTO tb_categorias (categoria_id, nome_categoria) VALUES
+	(1, "Vestuário"),
+	(2, "Casa"),
+	(3, "Papelaria");
+	
+-- Criação da tabela de vendas
+CREATE TABLE IF NOT EXISTS tb_vendas (
+	codigo_pedido INTEGER NOT NULL,
+	produto_id INTEGER NOT NULL,
+	categoria_id INTEGER NOT NULL,
+	quantidade INTEGER NOT NULL,
+	PRIMARY KEY (codigo_pedido, produto_id),
+	FOREIGN KEY (produto_id) REFERENCES tb_produtos(produto_id),
+	FOREIGN KEY (categoria_id) REFERENCES tb_categorias(categoria_id)
+);
+
+-- Inserindo vendas na tabela de vendas
+INSERT INTO tb_vendas ( codigo_pedido, produto_id, categoria_id, quantidade) VALUES
+	(1001, 1, 1, 2),
+	(1001, 2, 2, 1),
+	(1002, 2, 2, 3),
+	(1002, 3, 3, 5);
+
+SELECT * FROM tb_vendas;

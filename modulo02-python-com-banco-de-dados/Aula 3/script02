@@ -1,3 +1,9 @@
+*Código Disciplina	Nome Disciplina	Departamento	Nome Professor	*Código Aluno	Nome Aluno	Nota
+1001	Cálculo I	Matemática	Ana Souza	001	João Silva	8.0
+1001	Cálculo I	Matemática	Ana Souza	002	Ana Santos	6.5
+1002	Programação I	Computação	Pedro Silva	002	Ana Santos	9.0
+1002	Programação I	Computação	Pedro Silva	003	Carlos Lima	7.5
+
 PRAGMA foreign_key = ON;
 
 CREATE TABLE IF NOT EXISTS tb_alunos(
