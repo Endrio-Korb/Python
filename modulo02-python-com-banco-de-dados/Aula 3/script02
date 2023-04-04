@@ -1,0 +1,93 @@
+PRAGMA foreign_key = ON;
+
+CREATE TABLE IF NOT EXISTS tb_alunos(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	disciplina TEXT NOT NULL,
+	aluno TEXT NOT NULL,
+	nota1 REAL NOT NULL,
+	nota2 REAL NOT NULL,
+	nota3 REAL NOT NULL,
+	media REAL NOT NULL
+);
+
+INSERT INTO tb_alunos (disciplina, aluno, nota1, nota2, nota3, media) VALUES
+	("Estatística", "João Silva",8.5, 9, 8.5, 8.6),
+	("Matemática", "Maiara Nogueira", 10, 9.5, 9.5, 9.6),
+	("Java", "Danielle Souza", 7.5, 7.5, 7, 7.3),
+	("Ciência de Dados", "José Duarte", 6.5, 5.5, 7.5, 6.5);
+	
+ALTER TABLE tb_alunos RENAME TO tb_alunos_pre_3fn;
+
+-- Criação da tabela de alunos
+CREATE TABLE IF NOT EXISTS tb_matriculas (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	aluno_id INTEGER NOT NULL,
+	aluno_nome TEXT NOT NULL
+);
+
+-- Inserção de alunos na tabela de alunos
+INSERT INTO tb_matriculas  (aluno_id, aluno_nome) VALUES
+	(1, "João Silva"),
+	(2, "Maiara Nogueira"),
+	(3, "Danielle Souza"),
+	(4, "José Duarte");
+
+-- Criação da tabela de disciplinas
+CREATE TABLE IF NOT EXISTS tb_disciplinas(
+	id INTEGER NOT NULL,
+	disciplina_id INTEGER NOT NULL,
+	disciplina TEXT NOT NULL,
+	PRIMARY KEY (id, disciplina_id)
+);
+
+-- Inserção de disciplinas na tabela de disciplinas
+INSERT INTO tb_disciplinas (id,disciplina_id, disciplina) VALUES
+	(1,1, "Estátistica"),
+	(2,2, "Matemática"),
+	(3,3, "Java"),
+	(4,4, "Ciência de Dados");
+
+/*
+-- Criação da tabela de notas
+CREATE TABLE IF NOT EXISTS tb_notas (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	aluno_id INTEGER NOT NULL,
+	nota1 REAL NOT NULL,
+	nota2 REAL NOT NULL,
+	nota3 REAL NOT NULL,
+	media REAL NOT NULL,
+	FOREIGN KEY (aluno_id) REFERENCES tb_matriculas(aluno_id)
+);
+
+-- Inserção de notas na tabela de notas
+INSERT INTO tb_notas (aluno_id, nota1, nota2, nota3, media) VALUES
+	(1, 8.5, 9, 8.5, 8.6),
+	(2, 10, 9.5, 9.5, 9.6),
+	(3, 7.5, 7.5, 7, 7.3),
+	(4, 6.5, 5.5, 7.5, 6.5);
+*/
+
+DROP TABLE tb_notas;
+
+-- Criação da tabela de alunos
+CREATE TABLE IF NOT EXISTS tb_alunos (
+	id INTEGER NOT NULL,
+	disciplina_id INTEGER NOT NULL,
+	aluno_id INTEGER NOT NULL,
+	nota1 REAL NOT NULL,
+	nota2 REAL NOT NULL,
+	nota3 REAL NOT NULL,
+	media REAL NOT NULL,
+	PRIMARY KEY (id, disciplina_id, aluno_id),
+	FOREIGN KEY (disciplina_id) REFERENCES tb_disciplinas(disciplina_id),
+	FOREIGN KEY (aluno_id) REFERENCES tb_alunos(aluno_id)
+);
+
+-- Inserção na tabela de alunos
+INSERT INTO tb_alunos (id, disciplina_id, aluno_id, nota1, nota2, nota3, media) VALUES
+	(1,1,1, 8.5, 9, 8.5, 8.6),
+	(2,2,2, 10, 9.5, 9.5, 9.6),
+	(3,3,3, 7.5, 7.5, 7, 7.3),
+	(4,4,4, 6.5, 5.5, 7.5, 6.5);
+	
+SELECT * FROM tb_alunos;
