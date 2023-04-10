@@ -69,8 +69,8 @@ def mostrar_tb_produtos(cursor):
     SELECT * FROM tb_produtos;
     """
     resultado = cursor.execute(comando)
-    tb_produtos = resultado.fetchall()
-    return tb_produtos
+    produtos = resultado.fetchall()
+    return produtos
 
 
 # Função que insire dados em tb_produtos
@@ -111,7 +111,7 @@ if __name__ == "__main__":
         try: 
             opcao = int(input("Opção: "))
             if opcao == 1:
-                mostrar_tb_produtos(cursor)
+                print(mostrar_tb_produtos(cursor))
                 # Para cadastrar um novo pedido, é interessante mostrar a lista de produtos disponíveis
                 # Também colocar uma validação que verifica se o ID do produto existe
 
