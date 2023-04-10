@@ -9,6 +9,8 @@ produtos = [
     {"nome": "Risoles", "preco": 8}
 ]
 
+
+# Função que exlui todas as tabelas
 def excluir_tabelas(cursor):
     tabelas = ["tb_pedidos_itens", "tb_pedidos", "tb_produtos"]
     for i in tabelas:
@@ -16,6 +18,8 @@ def excluir_tabelas(cursor):
         cursor.execute(comando)
     print("Tabelas excluidas.")
 
+
+# Função que cria a tabela de produtos
 def criar_tabela_produto(cursor):
 
     comando = """
@@ -28,6 +32,8 @@ def criar_tabela_produto(cursor):
     cursor.execute(comando)
     print("Tabela tb_produtos criada com sucesso.")
 
+
+# Função que cria a tabela de pedidos
 def criar_tabela_pedidos(cursor):
     comando = """
     CREATE TABLE IF NOT EXISTS tb_pedidos(
@@ -39,6 +45,9 @@ def criar_tabela_pedidos(cursor):
     cursor.execute(comando)
     print("Tabela tb_pedidos criada com sucesso.")
 
+
+
+# Função que cria a tabela de pedidos_itens
 def criar_tabela_pedido_itens(cursor):
     comando = """
         CREATE TABLE IF NOT EXISTS tb_pedidos_itens(
@@ -53,7 +62,19 @@ def criar_tabela_pedido_itens(cursor):
     cursor.execute(comando)
     print("Tabela tb_pedidos_itens criada com sucesso.")
 
-def popular_tb_produtos(cursor):
+
+# Função que mostra os dados da tabela tb_pedidos
+def mostrar_tb_produtos(cursor):
+    comando = """
+    SELECT * FROM tb_produtos;
+    """
+    resultado = cursor.execute(comando)
+    tb_produtos = resultado.fetchall()
+    return tb_produtos
+
+
+# Função que insire dados em tb_produtos
+def inserir_tb_produtos(cursor):
 
     for produto in produtos:
         nome = produto.get("nome")
@@ -68,11 +89,11 @@ if __name__ == "__main__":
     cursor = conexao.cursor()
     cursor.execute("PRAGMA foreign_key = ON;")
 
-    criar_tabela_produto(cursor)
-    criar_tabela_pedidos(cursor)
-    criar_tabela_pedido_itens(cursor)
+    #criar_tabela_produto(cursor)
+    #criar_tabela_pedidos(cursor)
+    #criar_tabela_pedido_itens(cursor)
 
-    #popular_tb_produtos(cursor)
+    #inserir_tb_produtos(cursor)
     #conexao.commit()
     #excluir_tabelas(cursor)
 
@@ -90,7 +111,7 @@ if __name__ == "__main__":
         try: 
             opcao = int(input("Opção: "))
             if opcao == 1:
-                
+                mostrar_tb_produtos(cursor)
                 # Para cadastrar um novo pedido, é interessante mostrar a lista de produtos disponíveis
                 # Também colocar uma validação que verifica se o ID do produto existe
 
@@ -104,7 +125,7 @@ if __name__ == "__main__":
                 # escolhidos pelo usuário
 
                 
-                pass
+                
 
             elif opcao == 2:
                 # Será mostrada a lista de pedidos, contendo:
