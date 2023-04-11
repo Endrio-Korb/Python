@@ -66,11 +66,11 @@ def inserir_disciplinas(cursor):
 
 def inserir_cadastro(cursor):
     comando = """
-    INSERT INTO tb_cadastro_alunos (disciplina_id, aluno_id, nota1, nota2, nota3) VALUES
-    (1, 1, 8.5, 9, 8.5),
-    (2, 2, 10, 9.5, 9.5),
-    (3, 3, 7.5, 7.5, 7),
-    (4, 4, 6.5, 5.5, 7.5);
+    INSERT INTO tb_cadastro_alunos (id, disciplina_id, aluno_id, nota1, nota2, nota3) VALUES
+    (1, 1, 1, 8.5, 9, 8.5),
+    (1, 2, 2, 10, 9.5, 9.5),
+    (1, 3, 3, 7.5, 7.5, 7),
+    (1, 4, 4, 6.5, 5.5, 7.5);
     """
     cursor.execute(comando)
     conexao.commit()
@@ -87,9 +87,9 @@ if __name__ == "__main__":
     criar_tb_alunos(cursor)
     criar_tb_cadastro_alunos(cursor)
 
-    inserir_alunos(cursor)
-    inserir_disciplinas(cursor)
-    inserir_cadastro(cursor)
+    #inserir_alunos(cursor)
+    #inserir_disciplinas(cursor)
+    #inserir_cadastro(cursor)
 
 
     
