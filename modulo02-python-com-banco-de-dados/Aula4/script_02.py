@@ -39,7 +39,7 @@ def criar_tabela_pedidos(cursor):
     comando = """
     CREATE TABLE IF NOT EXISTS tb_pedidos(
         id INTEGER NOT NULL,
-        data_hora TIMESTAMP NOT NULL,
+        data_hora DATETIME NOT NULL,
         observacoes TEXT,
         PRIMARY KEY (id, data_hora)
     );
@@ -85,7 +85,6 @@ def mostrar_tb_pedidos_itens(cursor):
     resultado = cursor.fetchall()
     for item in resultado:
         print(item)
-
 
 
 # Função que insire dados em tb_produtos
@@ -159,6 +158,7 @@ if __name__ == "__main__":
                 # Será mostrada a lista de pedidos, contendo:
                 # ID do Pedido. Os produtos que fazem parte desse pedido. O total do pedido
                 mostrar_tb_pedidos_itens(cursor)
+                
 
 
             elif opcao == 3:
