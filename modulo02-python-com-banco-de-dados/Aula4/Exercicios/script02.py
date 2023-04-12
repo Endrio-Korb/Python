@@ -12,6 +12,7 @@ def criar_tb_disciplinas(cursor):
     """
     cursor.execute(comando)
 
+
 # Cria tabela de alunos
 def criar_tb_alunos(cursor):
     comando = """
@@ -23,6 +24,8 @@ def criar_tb_alunos(cursor):
     """
     cursor.execute(comando)
 
+
+# Criat tabela de cadastro de alunos
 def criar_tb_cadastro_alunos(cursor):
     comando = """
     CREATE TABLE IF NOT EXISTS tb_cadastro_alunos(
@@ -40,6 +43,7 @@ def criar_tb_cadastro_alunos(cursor):
     cursor.execute(comando)
 
 
+# Inserir alunos na tabela tb_alunos
 def inserir_alunos(cursor):
     comando = """
     INSERT INTO tb_alunos(aluno_id, nome) VALUES
@@ -52,6 +56,7 @@ def inserir_alunos(cursor):
     conexao.commit()
 
 
+# Inserir disciplinas na tabela tb_disciplinas
 def inserir_disciplinas(cursor):
     comando = """
     INSERT INTO tb_disciplinas (disciplina_id, nome) VALUES
@@ -63,7 +68,7 @@ def inserir_disciplinas(cursor):
     cursor.execute(comando)
     conexao.commit()
 
-
+# Inserir cadastro na tabela tb_cadastro_alunos
 def inserir_cadastro(cursor):
     comando = """
     INSERT INTO tb_cadastro_alunos (id, disciplina_id, aluno_id, nota1, nota2, nota3) VALUES
@@ -75,6 +80,15 @@ def inserir_cadastro(cursor):
     cursor.execute(comando)
     conexao.commit()
 
+# Mostra tabela de cadastro
+def mostrar_tb_cadastro_alunos(cursor):
+    comando = """
+    SELECT * FROM tb_cadastro_alunos;
+    """
+    cursor.execute(comando)
+    resultado = cursor.fetchall()
+    for item in resultado:
+        print(item)
 
 
 if __name__ == "__main__":
@@ -90,6 +104,8 @@ if __name__ == "__main__":
     #inserir_alunos(cursor)
     #inserir_disciplinas(cursor)
     #inserir_cadastro(cursor)
+
+    mostrar_tb_cadastro_alunos(cursor)
 
 
     
