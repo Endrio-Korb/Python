@@ -87,6 +87,17 @@ def mostrar_tb_pedidos_itens(cursor):
         print(item)
 
 
+# Função que mostra todos os pedidos feitos
+def mostrar_pedidos(cursor):
+    #TODO Mostrar o id do pedido, todos os itens desse pedido, valor total do pedido
+    comando = f"""
+    SELECT * FROM tb_pedidos_itens;
+    """
+    cursor.execute(comando)
+    resultado = cursor.fetchall()
+    return print(resultado)
+    
+
 # Função que insire dados em tb_produtos
 def inserir_tb_produtos(cursor):
 
@@ -130,36 +141,40 @@ if __name__ == "__main__":
                 mostrar_tb_produtos(cursor)
                 
                 comida = int(input("Qual comida deseja pedir:"))
-
+                quantidade = int(input("Informe a quantidade desejada: "))
                 comando = f"""
                 SELECT * From tb_produtos WHERE id = {comida};
                 """
                 cursor.execute(comando)
 
+                # Quando um pedido for finalizado, devemos salvar os dados em 2 tabelas:
+                # tb_pedidos, tb_pedidos_itens
                 data = datetime.date.today()
                 comando = f"""
                 INSERT INTO tb_pedidos (id, data_hora) VALUES ({comida}, {data});
                 """
                 cursor.execute(comando)
                 conexao.commit()
-                # Quando um pedido for finalizado, devemos salvar os dados em 2 tabelas:
-                # tb_pedidos, tb_pedidos_itens
 
                 # Quando o registro for inserido na tb_pedidos, vamos pegar o ID desse registro, que
                 # é feito pegando o atributo lastrowid do objeto cursor 'r' gerado (r = cursor.execute(comand))
-
                 # Após isso, vamos salvar na tabela tb_pedidos_itens esse id do pedido, e os ids dos produtos
-                # escolhidos pelo usuário
-
-                
-                
+                # escolhidos pelo usuário 
+                ultimoId = cursor.lastrowid
+                comando = f"""
+                INSERT INTO tb_pedidos_itens (pedido_id, produto_id, quantidade) VALUES
+                ( {ultimoId}, {comida}, {quantidade})
+                """
+                cursor.execute(comando)
+                conexao.commit()
 
             elif opcao == 2:
                 # Será mostrada a lista de pedidos, contendo:
                 # ID do Pedido. Os produtos que fazem parte desse pedido. O total do pedido
-                mostrar_tb_pedidos_itens(cursor)
+                mostrar_pedidos(cursor)
                 
-
+                
+                
 
             elif opcao == 3:
                 break
