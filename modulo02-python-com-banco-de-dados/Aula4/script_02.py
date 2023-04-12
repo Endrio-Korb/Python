@@ -72,9 +72,20 @@ def mostrar_tb_produtos(cursor):
     """
     cursor.execute(comando)
     resultado = cursor.fetchall()
-    saida = resultado
     for item in resultado:
         print(item)
+
+
+# Função que mostra a tabela tb_pedidos_itens
+def mostrar_tb_pedidos_itens(cursor):
+    comando = """
+    SELECT * FROM tb_pedidos_itens;
+    """
+    cursor.execute(comando)
+    resultado = cursor.fetchall()
+    for item in resultado:
+        print(item)
+
 
 
 # Função que insire dados em tb_produtos
@@ -145,6 +156,7 @@ if __name__ == "__main__":
                 
 
             elif opcao == 2:
+
                 # Será mostrada a lista de pedidos, contendo:
                 # ID do Pedido
                 # Os produtos que fazem parte desse pedido
