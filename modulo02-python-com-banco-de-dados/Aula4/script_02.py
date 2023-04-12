@@ -156,12 +156,10 @@ if __name__ == "__main__":
                 
 
             elif opcao == 2:
-
                 # Será mostrada a lista de pedidos, contendo:
-                # ID do Pedido
-                # Os produtos que fazem parte desse pedido
-                # O total do pedido
-                pass
+                # ID do Pedido. Os produtos que fazem parte desse pedido. O total do pedido
+                mostrar_tb_pedidos_itens(cursor)
+
 
             elif opcao == 3:
                 break
