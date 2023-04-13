@@ -130,7 +130,14 @@ def inserir_tb_cursos(cursor):
 # Mostrar tabela de cursos
 def mostrar_tb_cursos(cursor):
     comando = """
-    SELECT * FROM tb_cursos;
+    SELECT td.nome as "Disiciplinas", tds.nome as "Departamentos",
+    tp.nome as "Professores",ta.nome as "Alunos", tc.nota as "Notas"
+    FROM tb_cursos tc
+    INNER JOIN 
+    tb_departamentos tds ON tc.departamento_id = tds.departamento_id,
+    tb_disciplinas td ON tc.disciplina_id = td.disciplina_id,
+    tb_professores tp ON tc.professor_id = tp.professor_id,
+    tb_alunos ta ON tc.aluno_id = ta.aluno_id;
     """
     cursor.execute(comando)
     resultado = cursor.fetchall()
