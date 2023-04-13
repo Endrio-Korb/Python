@@ -83,7 +83,14 @@ def inserir_cadastro(cursor):
 # Mostra tabela de cadastro
 def mostrar_tb_cadastro_alunos(cursor):
     comando = """
-    SELECT * FROM tb_cadastro_alunos;
+    SELECT ta.nome as "Alunos", td.nome as "Disciplinas",
+    tca.nota1 as "Nota 1", tca.nota2 as "Nota 2",
+    tca.nota3 as "Nota 3", ( tca.nota1 + tca.nota2 + tca.nota3 ) / 3 as "Média"
+    FROM
+    tb_cadastro_alunos tca
+    INNER JOIN
+    tb_disciplinas td ON tca.disciplina_id = td.disciplina_id,
+    tb_alunos ta ON tca.aluno_id = ta.aluno_id;
     """
     cursor.execute(comando)
     resultado = cursor.fetchall()
