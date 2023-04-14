@@ -39,7 +39,7 @@ def criar_tabela_pedidos(cursor):
     comando = """
     CREATE TABLE IF NOT EXISTS tb_pedidos(
         id INTEGER NOT NULL,
-        data_hora DATETIME NOT NULL,
+        data_hora TIMESTAMP NOT NULL,
         observacoes TEXT,
         PRIMARY KEY (id, data_hora)
     );
@@ -118,8 +118,8 @@ if __name__ == "__main__":
     criar_tabela_pedidos(cursor)
     criar_tabela_pedido_itens(cursor)
 
-    #inserir_tb_produtos(cursor)
-    #conexao.commit()
+    inserir_tb_produtos(cursor)
+    conexao.commit()
     #excluir_tabelas(cursor)
 
     saida = """
