@@ -1,5 +1,5 @@
 import sqlite3
-import datetime
+from datetime import datetime
 
 # Dicionário com os produtos
 produtos = [
@@ -39,7 +39,7 @@ def criar_tabela_pedidos(cursor):
     comando = """
     CREATE TABLE IF NOT EXISTS tb_pedidos(
         id INTEGER NOT NULL,
-        data_hora TIMESTAMP NOT NULL,
+        data_hora TEXT NOT NULL,
         observacoes TEXT,
         PRIMARY KEY (id, data_hora)
     );
@@ -118,8 +118,8 @@ if __name__ == "__main__":
     criar_tabela_pedidos(cursor)
     criar_tabela_pedido_itens(cursor)
 
-    inserir_tb_produtos(cursor)
-    conexao.commit()
+    #inserir_tb_produtos(cursor)
+    #conexao.commit()
     #excluir_tabelas(cursor)
 
     saida = """
@@ -149,9 +149,9 @@ if __name__ == "__main__":
 
                 # Quando um pedido for finalizado, devemos salvar os dados em 2 tabelas:
                 # tb_pedidos, tb_pedidos_itens
-                data = datetime.date.today()
+                data = datetime.now()
                 comando = f"""
-                INSERT INTO tb_pedidos (id, data_hora) VALUES ({comida}, {data});
+                INSERT INTO tb_pedidos (id, data_hora) VALUES ({comida}, '{data}');
                 """
                 cursor.execute(comando)
                 conexao.commit()
