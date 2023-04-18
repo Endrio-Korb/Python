@@ -1,3 +1,5 @@
+from database import Base, engine
+
 import sqlite3
 from datetime import datetime
 
