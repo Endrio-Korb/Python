@@ -19,6 +19,6 @@ def wave(people):
 
 if __name__ == "__main__":
 
-    people = ["  gap  "]
+    people = ["hello"]
 
     print(wave(people))
