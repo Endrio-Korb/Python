@@ -20,6 +20,9 @@ class Usuario(Base):
     email = Column(String(100), nullable= False)
     senha = Column(String(100), nullable= False)
 
+    def __repr__(self):
+        return f"<Usuario>{self.email}"
+
 class UsuarioPerfil(Base):
 
     __tablename__ = "tb_usuarios_perfis"
