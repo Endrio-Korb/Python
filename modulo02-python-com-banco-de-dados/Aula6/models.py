@@ -46,7 +46,7 @@ class UsuarioPerfil(Base):
     # Como UsuarioPerfil tem uma relação de 1:N com Postagem, uselist será True. Pois o valor retornado
     # pode ser uma lista vaia, ou uma lista com 1 ou mais registros.
     postagens = relationship("Postagem", back_populates="usuario", uselist=True)
-    comentarios = relationship("Comentario", back_populates=usuario, uselist=True)
+    comentarios = relationship("Comentario", back_populates="usuario", uselist=True)
 
 class Postagem(Base):
 
