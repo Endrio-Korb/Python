@@ -63,6 +63,10 @@ class Categorias(Base):
     __tablename__ = "tb_categorias"
     id = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String(100), nullable=False)
+
+    # Quando temos uma relação de N:N obrigatoriamente precisamos criar uma tabela associativa, para relacionar os objetos que
+    # representam essas tabelas, precisamos passar o argumento secondary para a função relationship, dessa maneira conseguimos
+    # relacionar os objetos.
     postagens = relationship("Postagem", secondary=postagens_categorias, back_populates="categorias", uselist=True)
 
 class Comentario(Base):
