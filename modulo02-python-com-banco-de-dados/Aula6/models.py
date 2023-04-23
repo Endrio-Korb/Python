@@ -46,6 +46,7 @@ class UsuarioPerfil(Base):
     # Como UsuarioPerfil tem uma relação de 1:N com Postagem, uselist será True. Pois o valor retornado
     # pode ser uma lista vaia, ou uma lista com 1 ou mais registros.
     postagens = relationship("Postagem", back_populates="usuario", uselist=True)
+    comentarios = relationship("Comentario", back_populates=usuario, uselist=True)
 
 class Postagem(Base):
 
@@ -57,6 +58,7 @@ class Postagem(Base):
 
     usuario = relationship("UsuarioPerfil", back_populates="postagens", uselist=False)
     categorias = relationship("Categoria", secondary=postagens_categorias, back_populates="postagens",uselist=True)
+    comentarios = relationship("Comentario", back_populates="postagem", uselist=True)
 
 class Categorias(Base):
 
@@ -77,3 +79,6 @@ class Comentario(Base):
     postagem_id = Column(Integer, ForeignKey("tb_postagem.id"), nullable=False)
     texto = Column(String(200), nullable=False)
     data_hora = Column(DateTime, default=func.now)
+
+    usuario = relationship("UsuarioPerfil", back_populates="comentarios", uselist=False)
+    postagem = relationship("Postagem", back_populates="comentarios", uselist=False)
