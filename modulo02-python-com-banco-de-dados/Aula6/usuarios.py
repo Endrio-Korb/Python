@@ -20,7 +20,7 @@ def criar_perfil_usuario(usuario, nome, sexo):
     sexo=sexo
     )
     session.add(perfil_usuario)
-    session.commit
+    session.commit()
 
 
 def lista_usuarios():
