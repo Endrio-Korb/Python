@@ -56,12 +56,14 @@ class Postagem(Base):
     corpo = Column(Text, nullable=False)
 
     usuario = relationship("UsuarioPerfil", back_populates="postagens", uselist=False)
+    categorias = relationship("Categoria", secondary=postagens_categorias, back_populates="postagens",uselist=True)
 
 class Categorias(Base):
 
     __tablename__ = "tb_categorias"
     id = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String(100), nullable=False)
+    postagens = relationship("Postagem", secondary=postagens_categorias, back_populates="categorias", uselist=True)
 
 class Comentario(Base):
 
