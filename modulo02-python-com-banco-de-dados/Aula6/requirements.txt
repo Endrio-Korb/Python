@@ -1,4 +1,6 @@
 greenlet==2.0.2
+mysql==0.0.3
+mysqlclient==2.1.1
 PyMySQL==1.0.3
 python-dotenv==1.0.0
 SQLAlchemy==2.0.10
