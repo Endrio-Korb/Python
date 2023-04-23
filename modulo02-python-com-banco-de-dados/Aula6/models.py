@@ -40,7 +40,12 @@ class UsuarioPerfil(Base):
     nome = Column(String(200), nullable=False)
     sexo = Column(String(1), nullable=False)
 
+    # Como a relação é de 1:1, uselist será False pois apenas 1 registro será retornado.
     usuario = relationship("Usuario", back_populates="perfil", uselist=False)
+
+    # Como UsuarioPerfil tem uma relação de 1:N com Postagem, uselist será True. Pois o valor retornado
+    # pode ser uma lista vaia, ou uma lista com 1 ou mais registros.
+    postagens = relationship("Postagem", back_populates="usuario", uselist=True)
 
 class Postagem(Base):
 
@@ -49,6 +54,8 @@ class Postagem(Base):
     usuario_id = Column(Integer, ForeignKey("tb_usuarios_perfis.id"), nullable=False)
     titulo = Column(String(200), nullable=False)
     corpo = Column(Text, nullable=False)
+
+    usuario = relationship("UsuarioPerfil", back_populates="postagens", uselist=False)
 
 class Categorias(Base):
 
