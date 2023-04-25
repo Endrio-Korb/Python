@@ -32,6 +32,6 @@ def sort_array(source_array):
 
 if __name__ == "__main__":
 
-    source_array = [-34, -22, -35, -29, -13, 2, 20, -11, -7, -16, -7, 3, -26, 7, 46, 11, 17, 19, 25, 27, 14, 31, 42, 33, 45, 24, -20]
+    source_array = [1, 1, 5, 11, 2, 11, 111, 0]
 
     print(sort_array(source_array))
