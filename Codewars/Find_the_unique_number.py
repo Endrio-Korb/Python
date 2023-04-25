@@ -1,6 +1,5 @@
 def find_uniq(arr):
     dici = {}
-    saida = []
     for iten in arr:
         if dici.get(iten):
             dici[iten] += 1
@@ -11,6 +10,8 @@ def find_uniq(arr):
         if valor == 1:
             return chave
         
+# https://www.codewars.com/kata/585d7d5adb20cf33cb000235
+
 
 if __name__ == "__main__":
 

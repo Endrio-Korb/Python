@@ -23,6 +23,7 @@ def duplicate_count(text):
     except IndexError:
         return 0
 
+# https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1
 
 
 if __name__ == "__main__":

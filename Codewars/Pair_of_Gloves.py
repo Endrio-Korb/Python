@@ -30,6 +30,8 @@ def number_of_pairs(gloves):
         
     return pares
 
+# https://www.codewars.com/kata/58235a167a8cb37e1a0000db
+
 def number_of_pais2(gloves):
     return sum(gloves.count(color)//2 for color in set(gloves))
 
