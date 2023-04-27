@@ -3,6 +3,31 @@ def pick_peaks(arr):
     lista_posicao = []
     posicao = 0
     
+    picos = []
+    posicoes = []
+    anterior = 0
+    posterior = 1
+
+    for i in arr:
+        if anterior <= i:
+            try:
+                antterior_ind = (arr.index(i) - 1 )
+                anterior = arr.[anterior_ind]
+                posterior_ind = arr.index(anterior)
+                posterior_ind += 2
+                posterior = arr[posterior_ind]
+            except ValueError:
+                pass
+
+            if anterior < i and posterior < i:
+                picos.append(i)
+                posicoes.append(arr.index(i))
+
+
+
+
+
+
     x = (arr)
 
     for i in x:
