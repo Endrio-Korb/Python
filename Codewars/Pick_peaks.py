@@ -3,13 +3,15 @@ def pick_peaks(arr):
     lista_posicao = []
     posicao = 0
     
-    for i in range(len(arr)):
+    x = (arr)
+
+    for i in x:
         try:
             arr.index(i)
             d_posicao.update({posicao:i})
             lista_posicao.append(posicao)
             posicao += 1
-            arr.remove(i)
+
 
         except ValueError:
             pass

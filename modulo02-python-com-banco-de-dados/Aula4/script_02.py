@@ -16,6 +16,7 @@ produtos = [
 # Função que exlui todas as tabelas
 def excluir_tabelas(cursor):
     tabelas = ["tb_pedidos_itens", "tb_pedidos", "tb_produtos"]
+
     for i in tabelas:
         comando = f"DROP TABLE IF EXISTS {i};"
         cursor.execute(comando)
