@@ -11,6 +11,7 @@ def pick_peaks(arr):
     remove = 1
     valores = []
     corte_ind = 0
+    corte_cout = 0
 
     x = (arr)
 
@@ -35,9 +36,18 @@ def pick_peaks(arr):
                     contador += 1
 
                 if contador >= 2:
-                    corte_ind = (arr.index(i) + 1 )
-                    arr = arr[corte_ind:]
-
+                    if corte_cout == 0:
+                        corte_ind = (arr.index(i) + 1)
+                        arr = arr[corte_ind:]
+                        corte_cout = 1
+                    elif corte_cout >= 1:
+                        corte_ind = (arr.index(i) - 1)
+                        arr = arr[corte_ind:]
+                        corte_cout += 1
+                    else:
+                        corte_ind = (arr.index(i) -2)
+                        arr = arr[corte_ind:]
+                    
                 anterior_ind = (arr.index(i) - 1)
                 
                 if anterior_ind == -1:
