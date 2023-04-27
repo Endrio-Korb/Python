@@ -12,6 +12,8 @@ def pick_peaks(arr):
         if anterior <= i:
             try:
                 anterior_ind = (arr.index(i) - 1 )
+                if anterior_ind == -1:
+                    anterior_ind = 0
                 anterior = arr[anterior_ind]
                 posterior_ind = arr.index(anterior)
                 posterior_ind += 2
@@ -28,18 +30,18 @@ def pick_peaks(arr):
 
 
 
-    x = (arr)
+    # x = (arr)
 
-    for i in x:
-        try:
-            arr.index(i)
-            d_posicao.update({posicao:i})
-            lista_posicao.append(posicao)
-            posicao += 1
+    # for i in x:
+    #     try:
+    #         arr.index(i)
+    #         d_posicao.update({posicao:i})
+    #         lista_posicao.append(posicao)
+    #         posicao += 1
 
 
-        except ValueError:
-            pass
+    #     except ValueError:
+    #         pass
 
 
     
