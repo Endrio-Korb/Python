@@ -11,8 +11,8 @@ def pick_peaks(arr):
     for i in arr:
         if anterior <= i:
             try:
-                antterior_ind = (arr.index(i) - 1 )
-                anterior = arr.[anterior_ind]
+                anterior_ind = (arr.index(i) - 1 )
+                anterior = arr[anterior_ind]
                 posterior_ind = arr.index(anterior)
                 posterior_ind += 2
                 posterior = arr[posterior_ind]
