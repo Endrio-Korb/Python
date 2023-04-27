@@ -10,6 +10,7 @@ def pick_peaks(arr):
     anterior_ind = 0
     remove = 1
     valores = []
+    corte_ind = 0
 
     x = (arr)
 
@@ -34,7 +35,8 @@ def pick_peaks(arr):
                     contador += 1
 
                 if contador >= 2:
-                    arr = arr[i:]
+                    corte_ind = (arr.index(i) + 1 )
+                    arr = arr[corte_ind:]
 
                 anterior_ind = (arr.index(i) - 1)
                 
@@ -59,8 +61,11 @@ def pick_peaks(arr):
                         valores.append(valor)
 
                     if valores.count(valor) > 1:
-                        posicoes.pop(remove)
-                        remove += 1
+                        try:
+                            posicoes.pop(remove)
+                            remove += 1
+                        except IndexError:
+                            pass
         anterior = 1
 
 
@@ -71,6 +76,6 @@ def pick_peaks(arr):
 
 if __name__ == "__main__":
 
-    arr = [1,2,3,6,4,1,2,3,2,1]
+    arr = [3,2,3,6,4,1,2,3,2,1,2,3]
 
     print(pick_peaks(arr))
