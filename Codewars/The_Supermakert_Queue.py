@@ -19,8 +19,8 @@ def queue_time(customers, n):
 
 if __name__ == "__main__":
 
-    customers = [37, 8, 29, 31, 11, 47, 15, 8, 7, 37, 9, 25, 21, 9]
-    n = 4
+    customers = [6, 23, 38, 35, 10, 50, 33, 22, 29, 46, 37]
+    n = 6
 
     # Deve retornar 76
     
