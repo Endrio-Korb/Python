@@ -2,13 +2,13 @@ def pick_peaks(arr):
     d_posicao = {}
     lista_posicao = []
     posicao = 0
-    
     picos = []
     posicoes = []
     anterior = 0
     posterior = 1
     contador = 0
     anterior_ind = 0
+    d_contador = 0
 
     x = (arr)
 
@@ -19,10 +19,8 @@ def pick_peaks(arr):
             lista_posicao.append(posicao)
             posicao += 1
 
-
         except ValueError:
             pass
-
 
     for i in arr:
 
@@ -38,6 +36,10 @@ def pick_peaks(arr):
                     arr = arr[i:]
 
                 anterior_ind = (arr.index(i) - 1)
+                
+                if anterior_ind == -1:
+                    anterior_ind = 0
+
                 anterior = arr[anterior_ind]
                 posterior_ind = anterior_ind + 2
                 posterior = arr[posterior_ind]
@@ -47,24 +49,16 @@ def pick_peaks(arr):
             if anterior < i and posterior < i:
                 picos.append(i)
                 for chave, valor in d_posicao.items():
+                    
+                    if d_contador == 0:
+                        d_posicao.pop(chave)
+
                     if valor == i:
                         posicoes.append(chave)
         anterior = 1
 
 
     return picos, posicoes
-
-
-
-
-
-
-    
-    for chave, valor in d_posicao.items():
-        print(f"{chave}: {valor}")
-
-
-
 
 
 # https://www.codewars.com/kata/5279f6fe5ab7f447890006a7/train/python
