@@ -8,7 +8,8 @@ def pick_peaks(arr):
     posterior = 1
     contador = 0
     anterior_ind = 0
-    d_contador = 0
+    remove = 1
+    valores = []
 
     x = (arr)
 
@@ -41,20 +42,25 @@ def pick_peaks(arr):
                     anterior_ind = 0
 
                 anterior = arr[anterior_ind]
-                posterior_ind = anterior_ind + 2
-                posterior = arr[posterior_ind]
+                try:
+                    posterior_ind = anterior_ind + 2
+                    posterior = arr[posterior_ind]
+                except IndexError:
+                    pass
             except ValueError:
                 pass
 
             if anterior < i and posterior < i:
                 picos.append(i)
                 for chave, valor in d_posicao.items():
-                    
-                    if d_contador == 0:
-                        d_posicao.pop(chave)
 
                     if valor == i:
                         posicoes.append(chave)
+                        valores.append(valor)
+
+                    if valores.count(valor) > 1:
+                        posicoes.pop(remove)
+                        remove += 1
         anterior = 1
 
 
