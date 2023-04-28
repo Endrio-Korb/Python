@@ -65,13 +65,23 @@ def pick_peaks(arr):
             if anterior < i and posterior < i:
                 picos.append(i)
                 
-                posicao = x.index(i)
-                posicoes.append(posicao)
+                # posicao = x.index(i)
+                # posicoes.append(posicao)
 
-                # for chave, valor in d_posicao.items():
-                #     comparacao = x.index(valor)
-                #     if chave == comparacao:
-                #         posicoes.append(chave)
+                for chave, valor in d_posicao.items():
+                    try:
+                        anterior_ind = chave -1
+                        posterior_ind = chave + 1
+                        if anterior == -1:
+                            return IndexError
+                        if valor == i:
+                            anterior = x[anterior_ind]
+                            posterior = x[posterior_ind]
+                        if valor > anterior and valor > posterior:
+                            posicoes.append(chave)
+
+                    except IndexError:
+                        pass
 
                 # for chave, valor in d_posicao.items():
 
