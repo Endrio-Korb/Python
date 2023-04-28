@@ -11,6 +11,7 @@ def pick_peaks(arr):
     x = []
     corte_ind = 0
     corte_cout = 0
+    saida_posicoes = []
 
     for i in arr:
         x.append(i)
@@ -65,8 +66,26 @@ def pick_peaks(arr):
             if anterior < i and posterior < i:
                 picos.append(i)
                 
+
                 posicao = x.index(i)
                 posicoes.append(posicao)
+
+                # for i in posicoes:
+                #     try:
+                #         anterior_ind = x[i-1]
+                #         posterior_ind = x[i+1]
+                #         anterior = x[anterior_ind]
+                #         posterior = x[posterior_ind]
+                #         pico = x[i]
+                #         if pico > anterior and pico > posterior:
+                #             saida_posicoes.append(pico)
+
+
+                    # except IndexError:
+                    #     pass
+
+
+
 
                 # for chave, valor in d_posicao.items():
                 #     comparacao = x.index(valor)
@@ -88,7 +107,7 @@ def pick_peaks(arr):
         anterior = 1
 
 
-    return picos, posicoes
+    return picos, saida_posicoes
 
 
 # https://www.codewars.com/kata/5279f6fe5ab7f447890006a7/train/python
