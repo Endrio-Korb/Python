@@ -55,7 +55,7 @@ class Postagem(Base):
     usuario_id = Column(Integer, ForeignKey("tb_usuarios_perfis.id"), nullable=False)
     titulo = Column(String(200), nullable=False)
     corpo = Column(Text, nullable=False)
-    
+    data_hora = Column(DateTime, default=func.now)  
 
     usuario = relationship("UsuarioPerfil", back_populates="postagens", uselist=False)
     categorias = relationship("Categoria", secondary=postagens_categorias, back_populates="postagens",uselist=True)
