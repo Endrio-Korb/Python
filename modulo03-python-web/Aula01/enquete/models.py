@@ -17,6 +17,6 @@ class Opcao(models.Model):
     pergunta = models.ForeignKey(Pergunta, on_delete=models.CASCADE)
     texto = models.CharField(max_length=200)
     votos = models.IntegerField(default=0)
-
+    
     class Meta:
         db_table = "tb_opcoes"
