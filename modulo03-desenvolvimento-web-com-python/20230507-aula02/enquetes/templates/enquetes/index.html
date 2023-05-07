@@ -3,7 +3,7 @@
 {%  if ultimas_cinco_perguntas%}
     <ul>
         {% for pergunta in ultimas_cinco_perguntas %}
-            <li><a href="{% url 'detalhes' pergunta.id %}">{{pergunta.texto }}</a></li>
+            <li><a href="{% url 'enquetes:detalhes' pergunta.id %}">{{pergunta.texto }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
