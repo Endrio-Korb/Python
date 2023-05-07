@@ -8,11 +8,20 @@
 </ul> {% endcomment %}
 
 
-<form action=" {% url 'enquetes:votar' %}" method="POST">
+<form action="{% url 'enquetes:votar' %}" method="POST">
     {% csrf_token %}
 
     <fieldset>
         <legend><h1>{{ pergunta.text }}</h1></legend>
+        {% if mansagem_erro %}
+            <p><strong>{{ mensagem_erro }}</strong></p>
+        {% endif %}
+
+        {% for opcao in pergunta.opcao_set.all %}
+            <input type="radio" name="opcao" id="opcao{{ forloolp.counter}}" value="opcao{{ opcao.id }}">
+            <label for="opcao{{ forloop.counter }}">{{ opcao.text }}</label><br />
+        {% endfor %}
+
     </fieldset>
     
 </form>
