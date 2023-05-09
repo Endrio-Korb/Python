@@ -11,10 +11,10 @@ def find_outlier(integers):
     if len(odd) == 1:
         return odd[0]
     elif len(even) == 1:
-        return even
+        return even[0]
 
 
-
+# https://www.codewars.com/kata/5526fc09a1bbd946250002dc/train/python
 
 
 if __name__ == "__main__":
