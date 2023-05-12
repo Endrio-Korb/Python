@@ -1,6 +1,5 @@
 def queue_time(customers, n):
     maior_tempo = 0
-    total = 0
 
     for i in customers:
         if maior_tempo < i:
