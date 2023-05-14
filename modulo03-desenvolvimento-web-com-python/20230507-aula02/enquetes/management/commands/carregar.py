@@ -4,7 +4,7 @@ import os
 from django.core.management.base import BaseCommand
 
 from enquetes.models import Pergunta, Opcao
-
+from django.utils import timezone
 
 class Command(BaseCommand):
 
@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         
-        arquivo = options.get("arquivo")
+        arquivo = options.get("arquivo")[0]
         caminho_arquivo = os.path.join(os.getcwd(),"dados", arquivo)
 
         with open(caminho_arquivo, "r", encoding="utf-8") as _f:
@@ -23,4 +23,13 @@ class Command(BaseCommand):
             conteudo_arquivo = json.load(_f)
 
             for pergunta, opcoes in conteudo_arquivo.items():
-                self.stdout.write(pergunta, opcoes)
+                
+                pergunta_obj = Pergunta(
+                    texto = pergunta,
+                    data_de_publicacao = timezone.now()
+                )
+
+                for opcao in opcoes:
+                    pergunta_obj.opcao_set.append(Opcao(texto=opcao["texto"]))
+
+                pergunta_obj.save()
