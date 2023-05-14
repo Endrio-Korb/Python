@@ -23,4 +23,4 @@ class Command(BaseCommand):
             conteudo_arquivo = json.load(_f)
 
             for pergunta, opcoes in conteudo_arquivo.items():
-                print(pergunta, opcoes)
+                self.stdout.write(pergunta, opcoes)
