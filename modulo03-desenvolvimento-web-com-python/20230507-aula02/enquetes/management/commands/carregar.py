@@ -30,6 +30,6 @@ class Command(BaseCommand):
                 )
 
                 for opcao in opcoes:
-                    pergunta_obj.opcao_set.append(Opcao(texto=opcao["texto"]))
+                    pergunta_obj.opcao_set.add(Opcao(texto=opcao["texto"]))
 
                 pergunta_obj.save()
