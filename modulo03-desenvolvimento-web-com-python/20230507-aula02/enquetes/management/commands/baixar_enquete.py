@@ -21,7 +21,7 @@ class Command(BaseCommand):
 
         response = requests.get(url)
 
-        data_dir = os.path.join(os.getcwd(), "Dados")
+        data_dir = os.path.join(os.getcwd(), "dados")
 
         if not os.path.exists(data_dir):
             os.mkdir(data_dir)

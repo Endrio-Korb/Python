@@ -16,7 +16,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         
         arquivo = options.get("arquivo")
-        caminho_arquivo = os.path.join(os.getcwd(), arquivo)
+        caminho_arquivo = os.path.join(os.getcwd(),"dados", arquivo)
 
         with open(caminho_arquivo, "r", encoding="utf-8") as _f:
 
