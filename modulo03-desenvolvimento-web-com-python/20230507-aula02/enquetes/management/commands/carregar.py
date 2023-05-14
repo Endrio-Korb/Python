@@ -29,6 +29,8 @@ class Command(BaseCommand):
                     data_de_publicacao = timezone.now()
                 )
 
+                pergunta_obj.save()
+                
                 for opcao in opcoes:
                     pergunta_obj.opcao_set.add(Opcao(texto=opcao["texto"]))
 
