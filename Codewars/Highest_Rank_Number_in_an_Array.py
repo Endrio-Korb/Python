@@ -22,20 +22,16 @@ def highest_rank(arr):
             maior2 = i
             num2 = i
 
-
     if num2 >= num1 and maior2 < vezes:
         return num2
     elif num1 <= num2 and vezes < maior2:
         return num1
-
-
+    
 
 
 # https://www.codewars.com/kata/5420fc9bb5b2c7fd57000004/train/python
 
 
-if __name__ == "_main__":
+arr = [12, 10, 8, 12, 7, 6, 4, 10, 12, 10]
 
-    arr = [12, 10, 8, 12, 7, 6, 4, 10, 12]
-
-    print(highest_rank(arr))
+print(highest_rank(arr))

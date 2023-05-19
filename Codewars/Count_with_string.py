@@ -6,6 +6,6 @@ def count_with_string(arr):
 
 if __name__ == "__main__":
 
-    arr = ["5+5(3+2)"]
+    arr = ["5+5*3+2"]
 
     print(count_with_string(arr))
