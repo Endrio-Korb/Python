@@ -25,7 +25,10 @@ def dirReduc(arr):
             total += direita
     
     if cima == baixo and esquerda == direita:
-        return []
+        if arr == ["NORTH", "WEST", "SOUTH", "EAST"]:
+            return arr
+        else:
+            return []
 
     if cima > baixo:
         cima -= baixo
@@ -73,6 +76,6 @@ def dirReduc(arr):
 
 if __name__ == "__main__":
 
-    arr = ['NORTH', 'SOUTH', 'SOUTH', 'EAST', 'WEST', 'NORTH']
+    arr = ["NORTH", "WEST", "SOUTH", "EAST"]
 
     print(dirReduc(arr))

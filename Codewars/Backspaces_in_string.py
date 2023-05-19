@@ -25,6 +25,6 @@ def clean_string(s):
 
 if __name__ == "__main__":
 
-    s = ['abc####d##c#']
+    s = ['abc#d##c']
 
     print(clean_string(s))

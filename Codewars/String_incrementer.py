@@ -9,21 +9,19 @@ def increment_string(strng):
             if i == j:
                 tnum += j
                 count += 1
-    num = int(tnum)
-    
-    if num == 0:
-        num = 1
-    elif num > 0:
-        num += 1
+    try:
+        num = int(tnum)
+        if num == 0:
+            num = 1
+        elif num > 0:
+            num += 1
 
-    strng = strng.split(tnum)
+        strng = strng.split(tnum)
 
-    strng = strng[0] + str(num)
-    
-    
-    
-    return strng
-
+        strng = strng[0] + str(num)
+        return strng
+    except ValueError:
+        return strng + '1'
 
 # https://www.codewars.com/kata/54a91a4883a7de5d7800009c/train/python
 
