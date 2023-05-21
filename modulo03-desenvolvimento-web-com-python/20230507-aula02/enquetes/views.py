@@ -1,5 +1,6 @@
 from random import randint
 
+from django.db.models import Sum, Max, Min, Count, Avg
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
@@ -75,7 +76,7 @@ def estatisticas(request):
     # Criar uma variavel que vai armazenar a lista com as 3 perguntas que possuem mais votos
     # Dica use o método annotate()
     #mais_votados = (Opcao ).objects.annotate().aaggregate(sum)
-    mais_votados = Opcao.objects.order_by("votos").annotate().aaggregate(sum)
+    mais_votados = Opcao.objects.order_by("votos").annotate(Sum("votos"))
  
 
     contexto = {
