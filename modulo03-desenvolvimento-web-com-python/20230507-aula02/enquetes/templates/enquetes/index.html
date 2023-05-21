@@ -1,5 +1,4 @@
 
-
 {%  if ultimas_cinco_perguntas%}
     <ul>
         {% for pergunta in ultimas_cinco_perguntas %}
@@ -9,3 +8,16 @@
 {% else %}
     <p> Não existem perguntas cadastradas</p>
 {% endif %}
+
+<hr />
+
+<a href="{% url 'enquetes:estatisticas' %}">Estatísticas do sistema</a>
+
+  <!-- Mostrar quantas perguntas estão cadastras no sistema -->
+  <!-- Mostrar quantas opções estão cadastradas no sistema -->
+  
+  <!-- O que será necessário fazer? -->
+    <!-- Criar uma rotra (/enquetes/estatisticas) -->
+    <!-- Criar uma função em view.py que seja chamada quando a rota for acessada -->
+        <!-- Criar a função e associar essa função a rota no arquivo urls.py do pacote -->
+    <!-- Criar o template que vai mostrar as informação (enquetes/estatisticas.html) -->

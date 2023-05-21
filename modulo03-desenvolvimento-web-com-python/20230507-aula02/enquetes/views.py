@@ -66,3 +66,13 @@ def votar(request, pergunta_id):
         opcao_selecionada.save()
 
         return HttpResponseRedirect(reverse("enquetes:resultados", args=(pergunta.id,)))
+    
+
+def estatisticas(request):
+    contagem_perguntas = (Pergunta.objects.count())
+    contagem_opcoes = (Opcao.objects.count())
+
+    contexto = {"contagem_perguntas": contagem_perguntas,
+                "contagem_opcoes": contagem_opcoes}
+
+    return render(request, "enquetes/estatisticas.html",context = contexto)
