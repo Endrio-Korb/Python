@@ -1,10 +1,17 @@
 
-O total de perguntas é de {{ contagem_perguntas }}.
+<h2>Estatísticas do sistema de enquetes</h2>
 
-<br>
+<p>O total de perguntas é de <strong>{{ contagem_perguntas }}</strong></p>
 
-O total de opções é de {{ contagem_opcoes }}
+<p>O total de opções é de <strong>{{ contagem_opcoes }}</strong></p>
 
+<p>As três perguntas com mais respostas</p>
+<ul>
+    <li> 
+        {{ mais_votados}}
+    </li>
+
+</ul>
 <hr>
 
 <a href="{% url 'enquetes:index' %}">Voltar para a página principal</a>

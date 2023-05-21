@@ -69,10 +69,19 @@ def votar(request, pergunta_id):
     
 
 def estatisticas(request):
-    contagem_perguntas = (Pergunta.objects.count())
-    contagem_opcoes = (Opcao.objects.count())
+    contagem_perguntas = Pergunta.objects.count()
+    contagem_opcoes = Opcao.objects.count()
 
-    contexto = {"contagem_perguntas": contagem_perguntas,
-                "contagem_opcoes": contagem_opcoes}
+    # Criar uma variavel que vai armazenar a lista com as 3 perguntas que possuem mais votos
+    # Dica use o método annotate()
+    #mais_votados = (Opcao ).objects.annotate().aaggregate(sum)
+    mais_votados = Opcao.objects.order_by("votos").annotate().aaggregate(sum)
+ 
+
+    contexto = {
+        "contagem_perguntas": contagem_perguntas,
+        "contagem_opcoes": contagem_opcoes,
+        "mais_votados": mais_votados
+        }
 
     return render(request, "enquetes/estatisticas.html",context = contexto)
