@@ -77,16 +77,11 @@ def estatisticas(request):
     # Dica use o método annotate()
     #mais_votados = (Opcao ).objects.annotate().aaggregate(sum)
     votos = Opcao.objects.values("votos").annotate(contagem=Count("votos"))
-
-    votos_ordenados = {}
-
-    for i in sorted(votos):
-        votos_ordenados[i] = votos[i]
     
     contexto = {
         "contagem_perguntas": contagem_perguntas,
         "contagem_opcoes": contagem_opcoes,
-        "mais_votados": votos_ordenados
+        "mais_votos": votos,
         }
 
     return render(request, "enquetes/estatisticas.html",context = contexto)

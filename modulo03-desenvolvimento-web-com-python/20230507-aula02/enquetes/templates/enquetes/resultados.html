@@ -12,3 +12,18 @@
 <a href="#">Inserir Comentário</a>
 <hr />
 <a href="{% url 'enquetes:index' %}">Voltar para a página principal</a>
+
+
+<hr />
+
+{% if pergunta.mensagem_set.all %}
+    {% for mensagem  in pergunta.mensagem_set.all %}
+        <div>
+            <p>Email: <strong> {% if mensagem.email %} {{ mensagem.email }} {% else %} <i>Anônimo</i> {% endif %} </strong></p>
+            <p>Mensagem: <strong> {{ mensagem.texto }} </strong></p>
+            <p>Data/Hora: <strong> {{ mensagem.data_hora | date:"d/m/Y H:i:s" }} </strong></p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Não há mensagens cadastradas para essa pergunta.</p>
+{% endif %}

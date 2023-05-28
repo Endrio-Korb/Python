@@ -11,6 +11,9 @@ class Mensagens(models.Model):
 
     class Meta:
         db_table = "tb_mensagens"
+    
+    def __str__(self):
+        return self.texto
 
 
     
