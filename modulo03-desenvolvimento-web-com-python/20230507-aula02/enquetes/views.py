@@ -85,3 +85,12 @@ def estatisticas(request):
         }
 
     return render(request, "enquetes/estatisticas.html",context = contexto)
+
+
+def nova_mensagem(request, pergunta_id):
+
+    if request.method == "GET":
+    
+        pergunta = get_object_or_404(Pergunta, pk=pergunta_id)
+
+        return render(request, "enquetes/nova_mensagem.html",{"pergunta": pergunta})
