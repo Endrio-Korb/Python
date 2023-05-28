@@ -5,8 +5,12 @@ name = "pypi"
 
 [packages]
 pipfile = "*"
+django = "*"
+mysqlclient = "*"
+python-dotenv = "*"
 
 [dev-packages]
+ipython = "*"
 
 [requires]
 python_version = "3.11"
