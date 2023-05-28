@@ -7,7 +7,9 @@ from django.urls import reverse
 from django.template import loader
 
 
+
 from enquetes.models import Pergunta, Opcao
+from mensagens.models import Mensagens
 
 # Create your views here.
 
@@ -94,3 +96,17 @@ def nova_mensagem(request, pergunta_id):
         pergunta = get_object_or_404(Pergunta, pk=pergunta_id)
 
         return render(request, "enquetes/nova_mensagem.html",{"pergunta": pergunta})
+    
+    elif request.method == "POST":
+
+        email = request.POST.get("email")
+        texto = request.POST.get("texto")
+        pergunta = get_object_or_404(Pergunta, pk=pergunta_id)
+
+        nova_mensagem = Mensagens(
+            email = email, texto = texto, pergunta = pergunta
+        )
+
+        nova_mensagem.save() 
+
+        return HttpResponseRedirect(reverse("enquetes:resultados",args = (pergunta.id,)))

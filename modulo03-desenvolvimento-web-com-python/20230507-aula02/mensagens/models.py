@@ -4,7 +4,7 @@ from enquetes.models import Pergunta
 
 class Mensagens(models.Model):
 
-    email = models.CharField(max_length=100, null=True)    
+    email = models.CharField(max_length=100, null=True, blank=True)    
     texto = models.CharField(max_length=200, null=False)
     data_hora = models.DateTimeField(auto_now_add=True)
     pergunta = models.ForeignKey(Pergunta, on_delete=models.CASCADE)

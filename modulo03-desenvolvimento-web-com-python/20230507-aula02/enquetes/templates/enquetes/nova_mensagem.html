@@ -1,0 +1,15 @@
+
+<form action="{% url 'enquetes:nova_mensagem' pergunta.id %}" method="post">
+
+    {% csrf_token %}
+
+    <label for="email">E-mail</label>
+    <input type="email" name="email" id="email">
+
+    <hr>
+
+    <label for="texto"><strong>Texto da mensagem</strong></label><br>
+    <textarea name="texto" id="texto" cols="30" rows="10"></textarea><br>
+
+    <input type="submit" value="Enviar">
+</form>
