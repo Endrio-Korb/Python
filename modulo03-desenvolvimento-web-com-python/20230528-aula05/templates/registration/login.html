@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
     <div class="row d-flex justify-content-center">
+
+        {% if form.errors %}
+            <div class="alert alert-warning alert-dismissible fade show">
+                {% for title,message in form.errors.items %}
+                    {{ message }}
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
         <div class="col-3">
             <form class="login-form mt-5 pt-5" action="{% url 'login' %}" method="POST">
                 {% csrf_token %}
