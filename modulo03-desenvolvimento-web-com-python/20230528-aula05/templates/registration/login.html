@@ -22,11 +22,11 @@
                     <input type="password" name="password" id="password" class="form-control" placeholder="Digite sua senha">
                 </div>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary" style="margin: 5px 10px">Enviar</button> 
-                    <a href="{% url 'registro:registrar' %}" class="d-flex justify-content-center btn btn-primary" style="margin: 5px 10px"> Não tenho cadastro </a>
+                    <button type="submit" class="btn btn-primary" style="margin: 5px 5px">Enviar</button> 
+                    <a href="{% url 'password_reset' %}" class="d-flex justify-content-center btn btn-primary" style="margin: 5px 5px">Esqueceu a senha?</a>
                 </div>
                 <div>
-                    <a href="{% url 'password_reset' %}" class="d-flex justify-content-center btn btn-primary" style="margin: 5px 30px">Esqueceu a senha?</a>
+                    <a href="{% url 'registro:registrar' %}" class="d-flex justify-content-center btn btn-primary" style="margin: 5px 35px"> Não tenho cadastro </a>
                 </div>
             </form>
         </div>
