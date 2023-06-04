@@ -11,6 +11,7 @@ pipfile = "*"
 
 [dev-packages]
 ipython = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.10"
