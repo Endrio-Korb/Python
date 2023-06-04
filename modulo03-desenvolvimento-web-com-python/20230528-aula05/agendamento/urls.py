@@ -21,5 +21,6 @@ from django.contrib.auth import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('django.contrib.auth.urls'))
+    path('auth/', include('django.contrib.auth.urls')),
+    path('__debug__/', include('debug_toolbar.urls'))
 ]
