@@ -53,4 +53,8 @@ def pre_registro(request):
         form = PreRegistroForm(request.Post)
 
         if form.is_valid():
-            pass
+            
+            email_ja_cadastrado = User.objects.filter(email=form.email)
+
+            if email_ja_cadastrado:
+                return render(request, "pre_registro.html",{"form":PreRegistroForm(), "error_message": "E-mail inválido"})
