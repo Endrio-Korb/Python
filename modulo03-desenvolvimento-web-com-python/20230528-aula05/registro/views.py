@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 
 from registro.forms import PreRegistroForm
+from registro.models import PreRegistro
 
 from registro.validators import dados_preenchidos, username_ou_email_ja_cadastrador, senha_valida
 
@@ -50,11 +52,46 @@ def pre_registro(request):
 
     elif request.method == "POST":
         
-        form = PreRegistroForm(request.Post)
+        form = PreRegistroForm(request.POST)
 
         if form.is_valid():
-            
-            email_ja_cadastrado = User.objects.filter(email=form.email)
 
-            if email_ja_cadastrado:
-                return render(request, "pre_registro.html",{"form":PreRegistroForm(), "error_message": "E-mail inválido"})
+            email = form.cleaned_data.get("email")
+
+            email_ja_cadastrado = User.objects.filter(email=email)
+            email_no_pre_cadastro = PreRegistro.objects.filter(email=email)
+
+            if email_ja_cadastrado or email_no_pre_cadastro:
+
+                form.errors.update({
+                    "Erro de Pré-cadastro":"O e-mail informado é inválido. Verifique se o e-mail já não está cadastrado ou faz parta do pré-cadastro."
+                })
+
+                return render(request, "pre_registro.html",{"form":form})
+            
+            pre_registro = PreRegistro(email=email)
+            pre_registro.save()
+
+            menssagem_email = """
+            Você recebeu esse e-mail pois você ou alguém cadastro no sistema de agendamento.
+            Caso queira confirma o cadastro, clique no link a seguir.
+            Caso não tenha sido você, apenas ignore esse e-mail.
+
+
+            http://127.0.0.1:8000/registro/confirmacao
+
+            """
+
+            # send_mail(
+            #     assunto,
+            #     menssagem,
+            #     quem vai mandar,
+            #     quem vai receber,
+            # )
+
+            send_mail(
+                "Bem-vindo ao sistema de agendamento",
+                menssagem_email,
+                "admin@localhost",
+                [pre_registro.email]
+            )
