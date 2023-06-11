@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
+from registro.forms import PreRegistroForm
+
 from registro.validators import dados_preenchidos, username_ou_email_ja_cadastrador, senha_valida
 
 def registrar(request):
@@ -37,4 +39,18 @@ def registrar(request):
             return redirect("login")
 
         except Exception:
+            pass
+
+
+def pre_registro(request):
+
+    if request.method == "GET":
+        form = PreRegistroForm()
+        return render(request, "pre_registro.html", {"form": form})
+
+    elif request.method == "POST":
+        
+        form = PreRegistroForm(request.Post)
+
+        if form.is_valid():
             pass
