@@ -72,13 +72,13 @@ def pre_registro(request):
             pre_registro = PreRegistro(email=email)
             pre_registro.save()
 
-            menssagem_email = """
+            menssagem_email = f"""
             Você recebeu esse e-mail pois você ou alguém cadastro no sistema de agendamento.
             Caso queira confirma o cadastro, clique no link a seguir.
             Caso não tenha sido você, apenas ignore esse e-mail.
 
 
-            http://127.0.0.1:8000/registro/confirmacao
+            http://127.0.0.1:8000/registro/confirmacao?id={pre_registro.uuid}
 
             """
 
@@ -95,3 +95,5 @@ def pre_registro(request):
                 "admin@localhost",
                 [pre_registro.email]
             )
+
+            return render(request, "envio_pre_cadastro.html")
