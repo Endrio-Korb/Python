@@ -1,0 +1,37 @@
+
+Usuarios do sistema
+    - admin
+    - Instrutor
+    - Aluno
+
+    - TipoUsuario
+
+No site haveerão curso que serão cadastros pelos admin
+
+    Trilha(model)
+        - id
+        - nome
+        - lista de cursos
+
+    Curso(Model)
+        - id
+        - nome
+        - carga_horario
+        - preco
+        - descrição
+
+
+    Turma(model)
+        - id
+        - id_curso
+        - id_instrutor
+        - data_inicio
+        - data_fim
+        - qtd_minima_alunos
+        - qtd_maxima_alunos
+
+    AlunoTurma (model)
+        - id
+        - id_aluno
+        - id_turma
+
