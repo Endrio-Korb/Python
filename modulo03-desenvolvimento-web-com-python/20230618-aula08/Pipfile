@@ -8,6 +8,8 @@ django = "*"
 mysqlclient = "*"
 python-dotenv = "*"
 pipfile = "*"
+django-debug-toolbar = "*"
+ipython = "*"
 
 [dev-packages]
 ipython = "*"
