@@ -6,11 +6,12 @@ from cursos.models import Cursos
 class Turma(models.Model):
 
         curso = models.ForeignKey(Cursos, on_delete=models.CASCADE)
-        instrutor = models.ForeignKey(User, on_delete=models.CASCADE)
+        instrutor = models.ForeignKey(User, related_name="instrutor", on_delete=models.CASCADE)
         data_inicio = models.DateTimeField(null=False, blank=False)
         data_fim = models.DateTimeField(null=False, blank=False)
         qtd_minimo_alunos = models.IntegerField(default=0)
         qtd_maxima_alunos = models.IntegerField(default=100)
+        alunos = models.ManyToManyField(User, related_name="aluno", db_table="tb_turmas_alunos")
 
         class Meta:
             db_table = "tb_turmas"
