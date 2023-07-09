@@ -1,3 +1,10 @@
 from django.shortcuts import render
 
-# Create your views here.
+from turmas.models import Turma
+
+
+def perfil(request):
+
+    lista_de_matricula = request.user.aluno.all()
+
+    return render(request, "perfil.html", {"lista_de_matricula": lista_de_matricula})

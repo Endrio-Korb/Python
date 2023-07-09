@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils import timezone
 
@@ -121,3 +122,15 @@ def reenviar_pre_registro(request, uuid):
         enviar_email(pre_registro)
 
         return render(request, "envio_pre_cadastro.html")
+    
+    
+@login_required
+def processar_login(request):
+    
+    usuario = request.user
+
+    if usuario.groups.filter(name="alunos").exists():
+        return redirect("alunos:profile")
+    else:
+        return redirect("login")
+
