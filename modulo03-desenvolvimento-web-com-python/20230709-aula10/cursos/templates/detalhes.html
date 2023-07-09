@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>Turmas abertas para este curso</h2>
+    {% for turma in lista_de_turmas %}
+    <h3 class="card-title"><strong>Curso:</strong> {{turma.curso.nome}}</h3>
+    <h3 class="card-subtitle"><strong>Data de Inicio:</strong> {{ turma.data_inicio }}</h3>
+    <h3 class="card-subtitle"><strong>Data de Termino:</strong> {{ turma.data_fim }}</h3>
+    <h3 class="card-subtitle"><strong>Carga horária </strong>{{turma.curso.carga_horaria}}</h3>
+    <h3 class="card-subtitle"><strong>Instrutor:</strong> {{ turma.instrutor.first_name }}</h3>
+    <h3 class="card-subtitle"><a href="#">Matricular-se</a></h3>
+    
+    {% endfor %}
+
+
+
+
+{% endblock content %}

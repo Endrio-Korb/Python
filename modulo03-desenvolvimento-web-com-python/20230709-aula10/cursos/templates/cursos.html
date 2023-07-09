@@ -13,7 +13,7 @@
                     <h5 class="card-title"> {{curso.descricao}}</h5>
                     <h5 class="card-title">Carga horário de: {{curso.carga_horaria}}</h5>
                     <h5 class="card-title">Por apenas R${{curso.preco}} por mês</h5>
-                    <a href="{% url 'cursos:matriculas' %}" class="card-link">Matricule-se aqui</a>
+                    <a href="{% url 'cursos:detalhes' curso.id %}" class="card-link">Mais informações</a>
                 </div>
             </div>
         {% endfor %}
