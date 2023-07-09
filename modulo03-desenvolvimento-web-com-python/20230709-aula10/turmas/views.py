@@ -1,10 +1,7 @@
 from django.shortcuts import render
-from turmas.models import Turma
-from cursos.models import Curso
+
 
 def turmas(request):
+    lista_de_turmas_matriculada = request.user.aluno.all()
 
-    lista_de_turmas = Turma.objects.all()
-
-
-    return render(request,"turmas.html", {"lista_de_turmas": lista_de_turmas})
+    return render(request,"turmas.html", {"lista_de_turmas_matriculada": lista_de_turmas_matriculada})

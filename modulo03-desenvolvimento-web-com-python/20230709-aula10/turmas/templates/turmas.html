@@ -2,20 +2,22 @@
 
 {% block content %}
 
-    {% if lista_de_turmas %}
+    {% if lista_de_turmas_matriculada %}
 
-        <h2 class="text-center">Lista de turmas ativas</h2>
+        <h2 class="text-center">Lista de turmas que você está matriculado</h2>
 
-        {% for turma in lista_de_turmas %}
+
+        {% for turma in lista_de_turmas_matriculada %}
             <div class="card mb-2" style="width: 30rem;">
                 <div class="card-body">
                     <h5 class="card-title"> Código da turma {{turma.curso_id}}</h5>
                     <h5 class="card-title"> Quantidade máxima de alunos {{turma.qtd_maxima_alunos}}</h5>
                     <h5 class="card-title"> Código do instrutor da turma {{turma.instrutor_id}}</h5>
-                    <h5 class="card-subtitle">Nome do curso {{turma.curso_id}} </h5>
                 </div>
             </div>
         {% endfor %}
+    {% else %}
+        <h1>Você não está matriculado em nenhuma turma. <a href="{% url 'cursos:cursos' %}">Clique aqui</a> para se matricular em uma turma.</h1>
     {% endif %}
 
 {% endblock content %}
