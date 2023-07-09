@@ -24,6 +24,8 @@ urlpatterns = [
     path('auth/', include('django.contrib.auth.urls')),
     path('registro/', include('registro.urls')),
     path('alunos/', include('alunos.urls')),
+    path('cursos/', include('cursos.urls')),
+    path('turmas/', include('turmas.urls')),
 ]
 
 urlpatterns += [path('', RedirectView.as_view(url="/auth/login", permanent=True)),]

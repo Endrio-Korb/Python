@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if lista_de_turmas %}
+
+        <h2 class="text-center">Lista de turmas ativas</h2>
+
+        {% for turma in lista_de_turmas %}
+            <div class="card mb-2" style="width: 30rem;">
+                <div class="card-body">
+                    <h5 class="card-title"> Código da turma {{turma.curso_id}}</h5>
+                    <h5 class="card-title"> Quantidade máxima de alunos {{turma.qtd_maxima_alunos}}</h5>
+                    <h5 class="card-title"> Código do instrutor da turma {{turma.instrutor_id}}</h5>
+                    <h5 class="card-subtitle">Nome do curso {{turma.curso_id}} </h5>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock content %}
